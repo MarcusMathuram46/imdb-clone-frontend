@@ -1,0 +1,31 @@
+/* src/styles/NotFound.css */
+.not-found-container {
+    background-color: black; /* Set the background color to black */
+    color: white; /* Set text color to white */
+    height: 100vh; /* Full viewport height for centering */
+    padding: 20px; /* Add padding */
+    text-align: center; /* Center align text */
+  }
+  
+  h1 {
+    font-size: 3rem; /* Increase font size for better visibility */
+  }
+  
+  p {
+    font-size: 1.5rem; /* Slightly larger font for paragraph */
+  }
+  
+  .btn-primary {
+    margin-top: 15px; /* Add some space above the button */
+  }
+  
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.5rem; /* Adjust heading size for smaller screens */
+    }
+  
+    p {
+      font-size: 1.2rem; /* Adjust paragraph size for smaller screens */
+    }
+  }
+  
