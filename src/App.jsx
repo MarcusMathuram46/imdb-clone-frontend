@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Icon from './components/Icon';
 import Home from './pages/Home';
 import MovieList from './components/MovieList';
-import Movie from './pages/MovieDetail';
+import Movie from './pages/Movie';
 import NotFound from './components/NotFound';
 
 function App() {

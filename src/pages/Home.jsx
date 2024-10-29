@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios"; // Import axios
 import "../styles/home.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 import MovieList from "../components/MovieList";
 
-function home() {
+function Home() {
   const [popularMovies, setPopularMovies] = useState([]);
 
   useEffect(() => {
-    fetch(
-      "https://api.themoviedb.org/3/movie/popular?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US"
-    )
-      .then((res) => res.json())
-      .then((data) => setPopularMovies(data.results));
+    const fetchPopularMovies = async () => {
+      try {
+        const response = await axios.get(
+          "https://api.themoviedb.org/3/movie/popular?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US"
+        );
+        setPopularMovies(response.data.results);
+      } catch (error) {
+        console.error("Error fetching popular movies:", error);
+      }
+    };
+
+    fetchPopularMovies();
   }, []);
 
   return (
@@ -28,14 +36,14 @@ function home() {
         >
           {popularMovies.map((movie) => (
             <Link
+              key={movie.id}
               style={{ textDecoration: "none", color: "white" }}
               to={`/movie/${movie.id}`}
             >
               <div className="posterImage">
                 <img
-                  src={`https://image.tmdb.org/t/p/original${
-                    movie && movie.backdrop_path
-                  }`}
+                  src={`https://image.tmdb.org/t/p/original${movie && movie.backdrop_path}`}
+                  alt={`${movie?.original_title} backdrop`}
                 />
               </div>
               <div className="posterImage__overlay">
@@ -62,4 +70,4 @@ function home() {
   );
 }
 
-export default home;
+export default Home;
